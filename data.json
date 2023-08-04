@@ -1,0 +1,38 @@
+[
+  {
+    "model": "catalog.product",
+    "fields": {
+      "title": "Рамка для картины",
+      "description": "Деревянная рамка для картины размером 30х30см",
+      "category": 1,
+      "price": "200"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "fields": {
+      "title": "Светильник декоративный",
+      "description": "Декоративный светильник для освещения рабочего пространства",
+      "category": 1,
+      "price": "500"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "fields": {
+      "title": "Лодка надувная",
+      "description": "Надувная лодка вместимостью 4 человека",
+      "category": 2,
+      "price": "10000"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "fields": {
+      "title": "Мяч",
+      "description": "Оригинальный футбольный мяч Adidas",
+      "category": 2,
+      "price": "1500"
+    }
+  }
+]
