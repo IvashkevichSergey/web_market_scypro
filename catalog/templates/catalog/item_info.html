@@ -1,0 +1,32 @@
+{% extends 'catalog/base.html' %}
+{% load my_tags %}
+{% block content %}
+    <div class="row text-center">
+        <div class="col-lg-6 col-md-6 col-sm-12">
+             <div class="card mb-1 box-shadow">
+                <div class="card-header">
+                    <h4 class="font-weight-normal">{{ item.title }}</h4>
+                </div>
+             </div>
+
+            <div class="card mb-1 box-shadow">
+                <div class="card-body">
+                    <div class="mb-3">
+                        <h6 class="font-weight-normal">{{ item.description }}</h6>
+                    </div>
+                    <div class="card-img-top">
+                        {% if not item.image %}
+                        <img src="/media/no-photo.jpg">
+                        {% else %}
+                        <img src="{% mediapath item.image %}" width="250" />
+                        {% endif %}
+                    </div>
+                    <div class="mb-3">
+                        <h6 class="font-weight-normal">Цена: {{ item.price }} рублей</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
