@@ -22,8 +22,8 @@ class Product(models.Model):
     image = models.ImageField(upload_to='media/', verbose_name='изображение', **NULLABLE)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, verbose_name='категория товара')
     price = models.IntegerField(verbose_name='цена')
-    created_at = models.DateField(verbose_name='дата создания', default=timezone.now())
-    changed_at = models.DateField(verbose_name='дата изменения', default=timezone.now())
+    created_at = models.DateField(verbose_name='дата создания', default=timezone.now)
+    changed_at = models.DateField(verbose_name='дата изменения', default=timezone.now)
 
     def __str__(self):
         return f'{self.title} из категории {self.category}'
@@ -45,3 +45,21 @@ class Contacts(models.Model):
     class Meta:
         verbose_name = 'контакт'
         verbose_name_plural = 'контакты'
+
+
+class Blog(models.Model):
+    title = models.CharField(max_length=100, verbose_name='заголовок')
+    slug = models.CharField(max_length=100, unique=True, verbose_name='псевдоним')
+    body = models.TextField(verbose_name='текст блога')
+    image = models.ImageField(upload_to='media/', verbose_name='превью', **NULLABLE)
+    created_at = models.DateField(verbose_name='дата создания', default=timezone.now)
+    is_published = models.BooleanField(default=True, verbose_name='запись опубликована?')
+    views = models.IntegerField(default=0, verbose_name='просмотры')
+
+    def __str__(self):
+        return f'Запись "{self.title}"'
+
+    class Meta:
+        verbose_name = 'блог'
+        verbose_name_plural = 'блоги'
+        ordering = ('created_at',)
