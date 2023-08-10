@@ -13,4 +13,6 @@ def mediapath(path_to_image):
 
 @register.simple_tag()
 def mediapath(path_to_image):
+    if not path_to_image:
+        return f'/media/no-photo.jpg'
     return f'/media/{path_to_image}'
