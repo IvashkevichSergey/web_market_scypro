@@ -1,0 +1,17 @@
+{% extends 'catalog/base.html' %}
+{% block content %}
+<div class="col-4">
+    <div class="card mb-4 box-shadow">
+        <div class="card-header">
+            Вы действительно хотите удалить материал "{{ object.title }}"?
+        </div>
+        <div class="card-body">
+            <form method="post" class="form-floating">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-lg btn-danger mb-2">Подтвердить удаление</button>
+                <a href="{% url 'catalog:product_detail' object.pk %}" class="btn btn-lg btn-warning">Вернуться назад</a>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
