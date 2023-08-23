@@ -26,12 +26,26 @@ class Product(models.Model):
     changed_at = models.DateField(verbose_name='дата изменения', default=timezone.now)
 
     def __str__(self):
-        return f'{self.title} из категории {self.category}'
+        return f'{self.title}'
 
     class Meta:
         verbose_name = 'продукт'
         verbose_name_plural = 'продукты'
         ordering = ('changed_at',)
+
+
+class Version(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, verbose_name='продукт')
+    version_number = models.SmallIntegerField(verbose_name='номер версии')
+    version_name = models.CharField(max_length=50, verbose_name='название версии')
+    is_current = models.BooleanField(default=True, verbose_name='актуальная версия?')
+
+    def __str__(self):
+        return f'Версия {self.version_number} для продукта {self.product}'
+
+    class Meta:
+        verbose_name = 'версия'
+        verbose_name_plural = 'версии'
 
 
 class Contacts(models.Model):
