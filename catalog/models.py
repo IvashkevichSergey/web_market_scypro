@@ -1,6 +1,8 @@
 from django.utils import timezone
 from django.db import models
 
+from config import settings
+
 NULLABLE = {'null': True, 'blank': True}
 
 
@@ -24,6 +26,8 @@ class Product(models.Model):
     price = models.IntegerField(verbose_name='цена')
     created_at = models.DateField(verbose_name='дата создания', default=timezone.now)
     changed_at = models.DateField(verbose_name='дата изменения', default=timezone.now)
+
+    owner = models.ForeignKey(settings.AUTH_USER_MODEL, **NULLABLE, verbose_name='автор',  on_delete=models.SET_NULL)
 
     def __str__(self):
         return f'{self.title}'

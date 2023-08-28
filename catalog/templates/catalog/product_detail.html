@@ -1,37 +1,42 @@
 {% extends 'catalog/base.html' %}
 {% load my_tags %}
 {% block content %}
-    <div class="row text-center">
-        <div class="col-6">
-             <div class="card box-shadow">
+<div class="row text-center">
+    <div class="col-6">
+        <div class="card box-shadow">
 
-                <div class="card-header">
-                    <h4 class="font-weight-normal">{{ object.title }}</h4>
-                </div>
-                 <div class="card-body">
-                     <div class="mb-3">
-                         <h6 class="font-weight-normal">{{ object.description }}</h6>
-                     </div>
-                     <div class="card-img-top">
-                         <img src="{% mediapath object.image %}" width="250" />
-                     </div>
-                     <div class="mb-3">
-                         <h6 class="form-control border-success rounded-pill border-opacity-50 mt-3">Цена: {{ object.price }} рублей</h6>
-                     </div>
-                     {% if current_version %}
-                     <div>
-                     Актуальная версия: {{ current_version.version_number }} ({{ current_version.version_name}})
-                     </div>
-                     {% endif %}
-
-                 </div>
-
-                <div class="card-footer d-flex">
-                    <a class="btn btn-outline-primary" href="{% url 'catalog:product_update' object.pk %}">Обновить информацию о продукте</a>
-                    <a class="btn btn-outline-danger ms-auto" href="{% url 'catalog:product_delete' object.pk %}">Удалить продукт</a>
-                </div>
+            <div class="card-header">
+                <h4 class="font-weight-normal">{{ object.title }}</h4>
             </div>
+            <div class="card-body">
+                <div class="mb-3">
+                    <h6 class="font-weight-normal">{{ object.description }}</h6>
+                </div>
+                <div class="card-img-top">
+                    <img src="{% mediapath object.image %}" width="250"/>
+                </div>
+                <div class="mb-3">
+                    <h6 class="form-control border-success rounded-pill border-opacity-50 mt-3">Цена: {{ object.price }}
+                        рублей</h6>
+                </div>
+                {% if current_version %}
+                <div>
+                    Актуальная версия: {{ current_version.version_number }} ({{ current_version.version_name}})
+                </div>
+                {% endif %}
+
+            </div>
+
+            {% if user.is_authenticated %}
+            <div class="card-footer d-flex">
+                <a class="btn btn-outline-primary" href="{% url 'catalog:product_update' object.pk %}">Обновить
+                    информацию о продукте</a>
+                <a class="btn btn-outline-danger ms-auto" href="{% url 'catalog:product_delete' object.pk %}">Удалить
+                    продукт</a>
+            </div>
+            {% endif %}
         </div>
     </div>
+</div>
 
 {% endblock %}
