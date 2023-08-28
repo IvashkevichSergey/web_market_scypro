@@ -1,0 +1,270 @@
+[
+  {
+    "model": "catalog.category",
+    "pk": 1,
+    "fields": {
+      "title": "Товары для дома",
+      "description": "Категория товаров для дома"
+    }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 2,
+    "fields": {
+      "title": "Товары для отдыха",
+      "description": "Категория товаров для отдыха"
+    }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 3,
+    "fields": {
+      "title": "Строительные товары",
+      "description": "Категори я товаров для строительства"
+    }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 4,
+    "fields": {
+      "title": "Товары для уборки",
+      "description": "Категория товаров для уборки"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 7,
+    "fields": {
+      "title": "Клей для обоев",
+      "description": "Клей для обоев на площадь 25м2",
+      "image": "media/6604954812.webp",
+      "category": 3,
+      "price": 300,
+      "created_at": "2023-08-04",
+      "changed_at": "2023-08-04"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 8,
+    "fields": {
+      "title": "Плиточный клей",
+      "description": "Плиточный клей для наружных и внутренних работ",
+      "image": "media/6604954812.webp",
+      "category": 3,
+      "price": 500,
+      "created_at": "2023-08-04",
+      "changed_at": "2023-08-04"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 9,
+    "fields": {
+      "title": "Жидкость для мытья полов",
+      "description": "Жидкость для мытья полов с запахом ванили",
+      "image": "",
+      "category": 4,
+      "price": 150,
+      "created_at": "2023-08-04",
+      "changed_at": "2023-08-23"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 10,
+    "fields": {
+      "title": "Комплект тряпок",
+      "description": "Комплект безворсовых тряпок для влажной уборки",
+      "image": "",
+      "category": 4,
+      "price": 70,
+      "created_at": "2023-08-04",
+      "changed_at": "2023-08-23"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 11,
+    "fields": {
+      "title": "Рамка для картины",
+      "description": "Деревянная рамка для картины размером 30х30см",
+      "image": "",
+      "category": 1,
+      "price": 200,
+      "created_at": "2023-08-04",
+      "changed_at": "2023-08-04"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 12,
+    "fields": {
+      "title": "Светильник декоративный",
+      "description": "Декоративный светильник для освещения рабочего пространства",
+      "image": "",
+      "category": 1,
+      "price": 500,
+      "created_at": "2023-08-04",
+      "changed_at": "2023-08-23"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 13,
+    "fields": {
+      "title": "Лодка надувная",
+      "description": "Надувная лодка вместимостью 4 человека",
+      "image": "",
+      "category": 2,
+      "price": 10100,
+      "created_at": "2023-08-04",
+      "changed_at": "2023-08-24"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 14,
+    "fields": {
+      "title": "Мяч",
+      "description": "Оригинальный футбольный мяч Adidas",
+      "image": "",
+      "category": 2,
+      "price": 1500,
+      "created_at": "2023-08-04",
+      "changed_at": "2023-08-04"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 15,
+    "fields": {
+      "title": "Палатка 4-х местная",
+      "description": "Просторная палатка на 4-х человек",
+      "image": "media/tent_QLM9qCe.webp",
+      "category": 2,
+      "price": 4000,
+      "created_at": "2023-08-06",
+      "changed_at": "2023-08-06"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 16,
+    "fields": {
+      "title": "Шпаклевка универсальная",
+      "description": "Шпаклевка для наружных и внутренних работ, 25кг",
+      "image": "",
+      "category": 3,
+      "price": 570,
+      "created_at": "2023-08-23",
+      "changed_at": "2023-08-23"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 18,
+    "fields": {
+      "title": "Чайный столик",
+      "description": "Просто столик без запрещённых слов",
+      "image": "",
+      "category": 1,
+      "price": 10000,
+      "created_at": "2023-08-23",
+      "changed_at": "2023-08-23"
+    }
+  },
+  {
+    "model": "catalog.version",
+    "pk": 1,
+    "fields": {
+      "product": 13,
+      "version_number": 1,
+      "version_name": "Первая",
+      "is_current": true
+    }
+  },
+  {
+    "model": "catalog.version",
+    "pk": 6,
+    "fields": {
+      "product": 13,
+      "version_number": 2,
+      "version_name": "asd",
+      "is_current": true
+    }
+  },
+  {
+    "model": "catalog.contacts",
+    "pk": 1,
+    "fields": {
+      "phone_number": "+7 (3952) 12 45 78",
+      "address": "664081, г. Иркутск, проспект Большой Литейный, 4"
+    }
+  },
+  {
+    "model": "catalog.blog",
+    "pk": 1,
+    "fields": {
+      "title": "Стройка своего дома",
+      "slug": "strojka-svoego-doma",
+      "body": "Всё, всё, всё про стройку своего дома в одной статье",
+      "image": "",
+      "created_at": "2023-07-10",
+      "is_published": true,
+      "views": 1
+    }
+  },
+  {
+    "model": "catalog.blog",
+    "pk": 2,
+    "fields": {
+      "title": "Охота, рыбалка и прочее",
+      "slug": "ohota-rybalka-i-prochee",
+      "body": "Немного всякой белибирды об охоте и рыбалке",
+      "image": "",
+      "created_at": "2023-07-18",
+      "is_published": false,
+      "views": 0
+    }
+  },
+  {
+    "model": "catalog.blog",
+    "pk": 3,
+    "fields": {
+      "title": "Выбираем декоративную подсветку домой",
+      "slug": "vybiraem-dekorativnuyu-podsvetku-domoj",
+      "body": "Что-то очень интересное про выбор декоративной подсветки в дом",
+      "image": "",
+      "created_at": "2023-07-30",
+      "is_published": true,
+      "views": 64
+    }
+  },
+  {
+    "model": "catalog.blog",
+    "pk": 4,
+    "fields": {
+      "title": "Отдых на природе в палатке",
+      "slug": "otdyh-na-prirode-v-palatke",
+      "body": "Как правильно выбрать палатку и какая-то ещё информация на эту тему",
+      "image": "",
+      "created_at": "2023-08-01",
+      "is_published": true,
+      "views": 24
+    }
+  },
+  {
+    "model": "catalog.blog",
+    "pk": 5,
+    "fields": {
+      "title": "Дерево для дачного домика",
+      "slug": "derevo-dlya-dachnogo-domika",
+      "body": "Выбираем правильно брус и бруски",
+      "image": "",
+      "created_at": "2023-08-09",
+      "is_published": true,
+      "views": 1
+    }
+  }
+]

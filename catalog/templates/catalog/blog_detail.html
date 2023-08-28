@@ -17,22 +17,26 @@
                 <div class="card-img-top">
                     <img src="{% mediapath object.image %}" width="250"/>
                 </div>
-                                    <div class="form-control border-success rounded-pill border-opacity-50 mt-3 mb-1">
-                        Запись просмотрели {{ object.views }} человек(-а)
-                    </div>
+                <div class="form-control border-success rounded-pill border-opacity-50 mt-3 mb-1">
+                    Запись просмотрели {{ object.views }} человек(-а)
+                </div>
+                {% if user.is_authenticated %}
                 <div class="d-flex justify-content-between">
-                    <div><a href="{% url 'catalog:blog_update' object.slug %}" class="btn btn-outline-secondary mt-3 mb-1">
+                    <div><a href="{% url 'catalog:blog_update' object.slug %}"
+                            class="btn btn-outline-secondary mt-3 mb-1">
                         Изменить запись
                     </a>
                     </div>
-                    <div><a href="{% url 'catalog:blog_delete' object.slug %}" class="btn btn-outline-secondary mt-3 mb-1">
+                    <div><a href="{% url 'catalog:blog_delete' object.slug %}"
+                            class="btn btn-outline-secondary mt-3 mb-1">
                         Удалить запись
                     </a>
 
+                    </div>
                 </div>
+                {% endif %}
             </div>
         </div>
     </div>
-</div>
 
-{% endblock %}
+    {% endblock %}

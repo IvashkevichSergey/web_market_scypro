@@ -1,12 +1,12 @@
-from django.forms import inlineformset_factory, forms
+from django.forms import inlineformset_factory
 from django.urls import reverse_lazy, reverse
 from django.utils import timezone
 from pytils.translit import slugify
 
-from catalog.models import Product, Contacts, Category, Blog, Version
+from catalog.models import Product, Contacts, Blog, Version
 from django.views.generic import TemplateView, DetailView, ListView, CreateView, UpdateView, DeleteView
 
-from catalog.templates.catalog.forms import ProductForm, VersionForm
+from catalog.forms import ProductForm, VersionForm
 
 
 class IndexListView(TemplateView):
@@ -50,6 +50,12 @@ class ProductCreateView(CreateView):
 
     def get_success_url(self):
         return reverse('catalog:product_detail', args=[self.object.pk])
+
+    def form_valid(self, form):
+        self.object = form.save()
+        self.object.owner = self.request.user
+        self.object.save()
+        return super().form_valid(form)
 
 
 class ProductUpdateView(UpdateView):

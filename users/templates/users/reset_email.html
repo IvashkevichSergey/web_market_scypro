@@ -1,0 +1,26 @@
+{% extends 'catalog/base.html' %}
+{% block content %}
+<div class="col-lg-4">
+    <div class="card mb-4 box-shadow">
+        <div class="card-header">
+            <h5 class="my-0 font-weight-normal">Восстановление доступа к профилю</h5>
+        </div>
+        <div class="card-body">
+            {% if success %}
+            <p>{{ success }}</p>
+            <a href="{% url 'users:login' %}" class="btn btn-link">Вернуться на страницу авторизации</a>
+            {% else %}
+            <form method="post" class="form-floating">
+                {% csrf_token %}
+                <input type="text" id="check_email" name="check_email" placeholder="Введите почту">
+                {% if error %}
+                <div class="alert alert-danger mt-2">{{ error }}</div>
+                {% endif %}
+                <button type="submit" class="btn btn-lg btn-block btn-success mt-2">Отправить новый пароль</button>
+
+            </form>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

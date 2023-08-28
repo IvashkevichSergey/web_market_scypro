@@ -1,0 +1,18 @@
+{% extends 'catalog/base.html' %}
+{% block content %}
+<div class="col-lg-4">
+    <div class="card mb-4 box-shadow">
+        <div class="card-header">
+            <h4 class="my-0 font-weight-normal">Введите данные для входа</h4>
+        </div>
+        <div class="card-body">
+            <form method="post" class="form-floating">
+                {% csrf_token %}
+                {{ form.as_p}}
+                <button type="submit" class="btn btn-lg btn-block btn-success">Войти</button>
+                <a href="{% url 'users:reset_email' %}" class="btn btn-link">Восстановить пароль</a>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -47,3 +47,22 @@ class VersionForm(forms.ModelForm):
         model = Version
         fields = '__all__'
 
+    def clean_is_current(self):
+        def check_is_current(status, new_list=None):
+            if new_list is None:
+                new_list = []
+            new_list.append(status)
+            print(new_list)
+            # raise forms.ValidationError('!!!!!!!!!!!!!!!')
+        cleaned_data = self.cleaned_data['is_current']
+        # print(cleaned_data)
+        check_is_current(cleaned_data)
+        # product = cleaned_data.get('product')
+        # all_current_versions = Version.objects.filter(product=product, is_current=True)
+        # is_current = cleaned_data.get('is_current')
+        # print(is_current)
+        # if all_current_versions and is_current:
+        #     raise forms.ValidationError('!!!!!!!!!!!!!!!')
+        return cleaned_data
+
+
