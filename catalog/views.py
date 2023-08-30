@@ -1,4 +1,6 @@
-from django.forms import inlineformset_factory
+from django.contrib.auth.mixins import PermissionRequiredMixin, UserPassesTestMixin
+from django.core.exceptions import ValidationError
+from django.forms import inlineformset_factory, forms
 from django.urls import reverse_lazy, reverse
 from django.utils import timezone
 from pytils.translit import slugify
@@ -13,9 +15,13 @@ class IndexListView(TemplateView):
     model = Product
     template_name = 'catalog/index.html'
 
-    extra_context = {
-            'items': Product.objects.all()
-        }
+    def get_context_data(self, **kwargs):
+        context_data = super().get_context_data()
+        if not self.request.user.has_perm('catalog.change_product'):
+            context_data['items'] = Product.objects.filter(is_published=True)
+        else:
+            context_data['items'] = Product.objects.all()
+        return context_data
 
 
 class ContactsListView(TemplateView):
@@ -58,13 +64,21 @@ class ProductCreateView(CreateView):
         return super().form_valid(form)
 
 
-class ProductUpdateView(UpdateView):
+class ProductUpdateView(UserPassesTestMixin, UpdateView):
     model = Product
     form_class = ProductForm
+
+    def test_func(self):
+        return self.request.user.has_perm('catalog.change_product') or self.request.user == self.get_object().owner
 
     def get_object(self, queryset=None):
         self.object = super().get_object(queryset)
         self.object.changed_at = timezone.now()
+        if self.request.method == 'POST':
+            if self.request.POST.get('check_is_published'):
+                self.object.is_published = True
+            else:
+                self.object.is_published = False
         self.object.save()
         return self.object
 
@@ -81,6 +95,10 @@ class ProductUpdateView(UpdateView):
         formset = self.get_context_data()['formset']
         self.object = form.save()
         if formset.is_valid():
+            # versions = Version.objects.filter(product=self.object, is_current=True)
+            # print(versions)
+            # if versions:
+            #     raise forms.ValidationError('!!!!!!!!!!')
             formset.instance = self.object
             formset.save()
         return super().form_valid(form)
@@ -128,7 +146,6 @@ class BlogCreateView(CreateView):
             new_blog = form.save()
             new_blog.slug = slugify(new_blog.title)
             new_blog.save()
-
             return super().form_valid(form)
 
 
@@ -142,7 +159,6 @@ class BlogUpdateView(UpdateView):
             new_blog = form.save()
             new_blog.slug = slugify(new_blog.title)
             new_blog.save()
-
             return super().form_valid(form)
 
     def get_success_url(self):
