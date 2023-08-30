@@ -47,22 +47,29 @@ class VersionForm(forms.ModelForm):
         model = Version
         fields = '__all__'
 
-    def clean_is_current(self):
-        def check_is_current(status, new_list=None):
-            if new_list is None:
-                new_list = []
-            new_list.append(status)
-            print(new_list)
-            # raise forms.ValidationError('!!!!!!!!!!!!!!!')
-        cleaned_data = self.cleaned_data['is_current']
-        # print(cleaned_data)
-        check_is_current(cleaned_data)
-        # product = cleaned_data.get('product')
+    # def clean(self):
+    #     self.forms = super().clean()
+    #     active_list = [form.cleaned_data['is_current'] for form in self.forms if 'is_current' in form.cleaned_data]
+    #     if active_list.count(True) > 1:
+    #         raise forms.ValidationError('Возможна лишь одна активная версия. Пожалуйста, активируйте только 1 версию.')
+    # def clean_is_current(self):
+    #     product = self.cleaned_data['product']
+    #     print(Version.objects.filter(product=product, is_current=True))
+    #     if len(Version.objects.filter(product=product, is_current=True)) > 1:
+    #         print('WE ARE HERE')
+    #         raise forms.ValidationError('Возможна лишь одна активная версия. Пожалуйста, активируйте только 1 версию.')
+    #     cleaned_data = self.cleaned_data
+    #     print(self.cleaned_data)
         # all_current_versions = Version.objects.filter(product=product, is_current=True)
-        # is_current = cleaned_data.get('is_current')
-        # print(is_current)
-        # if all_current_versions and is_current:
-        #     raise forms.ValidationError('!!!!!!!!!!!!!!!')
-        return cleaned_data
+
+    #     cleaned_data = self.cleaned_data['is_current']
+    #     # print(cleaned_data)
+    #     check_is_current(cleaned_data)
+    #     # product = cleaned_data.get('product')
+    #     # is_current = cleaned_data.get('is_current')
+    #     # print(is_current)
+    #     # if all_current_versions and is_current:
+    #     #     raise forms.ValidationError('!!!!!!!!!!!!!!!')
+    #     return cleaned_data
 
 

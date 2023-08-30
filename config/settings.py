@@ -140,7 +140,5 @@ LOGOUT_REDIRECT_URL = '/'
 EMAIL_HOST = 'smtp.yandex.ru'
 EMAIL_PORT = 465
 EMAIL_HOST_USER = 'jan.jangovitch@yandex.ru'
-# EMAIL_HOST_USER = 'prado-150@yandex.ru'
-# EMAIL_HOST_PASSWORD = 'SEREGa1993'
 EMAIL_HOST_PASSWORD = 'uwptqmyvwuazpxvs'
 EMAIL_USE_SSL = True

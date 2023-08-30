@@ -12,8 +12,20 @@
             </div>
             <div class="card-body">
                 {% csrf_token %}
-                {{ form.as_p}}
+                {{ form.as_p }}
                 {% if object %}
+                {% if perms.catalog.change_product %}
+                <div class="form-check mb-2">
+                    {% if object.is_published == 'True' %}
+                    <input class="form-check-input" type="checkbox" name="check_is_published" checked>
+                    {% else %}
+                    <input class="form-check-input" type="checkbox" name="check_is_published">
+                    {% endif %}
+                    <label class="form-check-label">
+                        Разрешить публикацию
+                    </label>
+                </div>
+                {% endif %}
                 <button type="submit" class="btn btn-lg btn-block btn-success">Сохранить изменения</button>
                 {% else %}
                 <button type="submit" class="btn btn-lg btn-block btn-success">Добавить на сайт</button>
