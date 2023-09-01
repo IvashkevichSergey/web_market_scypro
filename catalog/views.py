@@ -5,10 +5,11 @@ from django.urls import reverse_lazy, reverse
 from django.utils import timezone
 from pytils.translit import slugify
 
-from catalog.models import Product, Contacts, Blog, Version
+from catalog.models import Product, Contacts, Blog, Version, Category
 from django.views.generic import TemplateView, DetailView, ListView, CreateView, UpdateView, DeleteView
 
 from catalog.forms import ProductForm, VersionForm
+from catalog.templates.catalog.services import cache_category
 
 
 class IndexListView(TemplateView):
@@ -22,6 +23,19 @@ class IndexListView(TemplateView):
         else:
             context_data['items'] = Product.objects.all()
         return context_data
+
+
+class CategoryView(ListView):
+    model = Category
+
+    def get_context_data(self, **kwargs):
+        context_data = super().get_context_data(**kwargs)
+        context_data['lists'] = cache_category()
+        return context_data
+
+
+class CategoryDetailView(DetailView):
+    model = Category
 
 
 class ContactsListView(TemplateView):
@@ -95,10 +109,6 @@ class ProductUpdateView(UserPassesTestMixin, UpdateView):
         formset = self.get_context_data()['formset']
         self.object = form.save()
         if formset.is_valid():
-            # versions = Version.objects.filter(product=self.object, is_current=True)
-            # print(versions)
-            # if versions:
-            #     raise forms.ValidationError('!!!!!!!!!!')
             formset.instance = self.object
             formset.save()
         return super().form_valid(form)
@@ -129,11 +139,6 @@ class BlogDetailView(DetailView):
         self.object.views += 1
         self.object.save()
         return self.object
-
-    # def get_context_data(self, **kwargs):
-    #     context_data = super().get_context_data(**kwargs)
-
-
 
 
 class BlogCreateView(CreateView):
